@@ -9,18 +9,18 @@ namespace mission9_hls68.Controllers
 {
     public class HomeController : Controller
     {
-        private BookstoreContext context { get; set; }
+        private IBookstoreRepository repo;
 
-        public HomeController (BookstoreContext temp)
+        public HomeController (IBookstoreRepository temp)
         {
-            context = temp;
+            repo = temp;
         }
 
         public IActionResult Index()
         {
-            var blah = context.Books.ToList();
+            var blah = repo.Books.ToList();
 
-            return View();
+            return View(blah);
         }
 
         
