@@ -2,13 +2,13 @@
 @{
 }
 
-@model List<Books>
+@model BooksViewModel
 
-@foreach (Books b in Model)
+@foreach (Books b in Model.Books)
 {
                 <h3>@b.Title</h3>
                 <ul>
-                    <li> BookId: @b.BookId</li>
+                    
                     <li> Author: @b.Author</li>
                     <li> Publisher: @b.Publisher </li>
                     <li> Isbn:  @b.Isbn</li>
@@ -20,3 +20,9 @@
                 </ul>
                 <br />
             }
+
+
+
+
+<div page-blah="@Model.PageInfo" page-action="Index"></div>
+
