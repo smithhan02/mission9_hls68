@@ -2,26 +2,26 @@
 @model mission9_hls68.Pages.CartModel
 @{
 }
-
+<!-- create table to display cart info -->
 <h2> Your Cart</h2>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>Item </th>
             <th>Quantity</th>
-            <th>Cost</th>
+            <th>Price</th>
             <th>Subtotal</th>
         </tr>
     </thead>
     <tbody>
         @foreach(var i in Model.basket.Items)
             {
-                <tr>
-                    <td>@i.Books.Title</td>
-                    <td>@i.Quantity</td>
-                    <td>25</td>
-                    <td>@(i.Quantity*25)</td>
-                </tr>
+        <tr>
+            <td>@i.Books.Title</td>
+            <td>@i.Quantity</td>
+            <td>@i.Books.Price</td> <!--25-->
+            <td>@(i.Quantity*i.Books.Price)</td> <!--25-->
+        </tr>
             }
     </tbody>
     <tfoot>

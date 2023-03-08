@@ -17,8 +17,10 @@ namespace mission9_hls68.Pages
         {
             repo = temp;
         }
-     public Basket basket { get; set; }
-     public string ReturnUrl { get; set; }
+
+         public Basket basket { get; set; }
+         public string ReturnUrl { get; set; }
+
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
@@ -28,10 +30,12 @@ namespace mission9_hls68.Pages
         public IActionResult OnPost(int BookId, string returnUrl)
         {
             Books b = repo.Books.FirstOrDefault(x => x.BookId == BookId);
+            
             //different from videos 
-            //Books price = repo.Books.FirstOrDefault(x => x.Price == Price);
+
             // if basket already exists, this will get that one, otherwise it will make a new one 
             basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
+
             // add item to basket 
             basket.AddItem(b, 1);
 

@@ -11,7 +11,7 @@ namespace mission9_hls68.Models
         public void AddItem (Books Book, int qty)
         {
             BasketLineItem Line = Items
-                .Where(b => b.Books.BookId == Book.BookId)
+                .Where(b => b.Books.BookId == Book.BookId )
                 .FirstOrDefault();
 
             if(Line == null)
@@ -19,19 +19,21 @@ namespace mission9_hls68.Models
                 Items.Add(new BasketLineItem
                 {
                     Books = Book,
-                    Quantity = qty
+                    Quantity = qty,
+                   // Price = Price
                 });
             }
             else
             {
                 Line.Quantity += qty;
+               
             }
         }
 
         public double CalculateTotal()
         {
-            //bring in book price(different from video)
-            double sum = Items.Sum(x => x.Quantity * 25);
+            //bring in book price
+            double sum = Items.Sum(x => x.Quantity * x.Books.Price);
             return sum;
         }
     }
@@ -41,5 +43,6 @@ namespace mission9_hls68.Models
         public int LineID { get; set; }
         public Books Books { get; set; }
         public int Quantity { get; set; }
+        public int Price { get; set; }
     }
 }
