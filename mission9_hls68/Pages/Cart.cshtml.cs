@@ -13,9 +13,10 @@ namespace mission9_hls68.Pages
     {
         private IBookstoreRepository repo { get; set; }
         
-        public CartModel (IBookstoreRepository temp)
+        public CartModel (IBookstoreRepository temp, Basket b)
         {
             repo = temp;
+            basket = b;
         }
 
          public Basket basket { get; set; }
@@ -24,26 +25,23 @@ namespace mission9_hls68.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
+            //basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
         }
 
         public IActionResult OnPost(int BookId, string returnUrl)
         {
             Books b = repo.Books.FirstOrDefault(x => x.BookId == BookId);
             
-            //different from videos 
-
-            // if basket already exists, this will get that one, otherwise it will make a new one 
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
 
             // add item to basket 
             basket.AddItem(b, 1);
 
-            // set json file based on the new basket 
-            HttpContext.Session.SetJson("basket", basket);
-
-
             return RedirectToPage(new { ReturnUrl = returnUrl});
+        }
+        public IActionResult OnPostRemove(int BookId, string returnUrl)
+        {
+            basket.RemoveItem(basket.Items.First(x => x.Books.BookId == BookId).Books);
+            return RedirectToPage( new {ReturnUrl = returnUrl});
         }
     }
 }

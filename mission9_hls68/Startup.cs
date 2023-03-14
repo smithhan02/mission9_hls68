@@ -37,6 +37,9 @@ namespace mission9_hls68
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+            // These lines tell us that the basket is actually going to be an instance of a SessionBasket
+            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }
 
