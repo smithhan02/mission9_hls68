@@ -39,7 +39,7 @@ namespace mission9_hls68.Controllers
                 repo.SavePurchase(purchase);
                 basket.ClearBasket();
 
-                return View();
+                return RedirectToPage("/PurchaseComplete");
             }
             else
             {
