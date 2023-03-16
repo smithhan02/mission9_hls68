@@ -9,8 +9,8 @@ using mission9_hls68.Models;
 namespace mission9_hls68.Migrations
 {
     [DbContext(typeof(BookstoreContext))]
-    [Migration("20230316173247_initial")]
-    partial class initial
+    [Migration("20230316200308_Mission11")]
+    partial class Mission11
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
