@@ -33,6 +33,8 @@ namespace mission9_hls68
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
+
             services.AddRazorPages();
             services.AddDistributedMemoryCache();
             services.AddSession();
